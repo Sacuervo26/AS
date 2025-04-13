@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from '../components/header-footer/1-Header.astro';
+import Talleres from '../components/escuela/taller.astro';
+import Footer from '../components/header-footer/5-Footer.astro';
+import "../styles/global.css";
+---
+
+<Layout>
+    <header>
+		<Header />
+	</header>
+    <main>
+		<section>
+			<Talleres />
+		</section>
+	</main>
+    <footer id="contacto">
+		<Footer />
+	</footer>    
+</Layout>

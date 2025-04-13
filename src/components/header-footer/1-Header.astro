@@ -1,0 +1,67 @@
+<nav class="w-full navbar px-4 md:px-8 flex flex-row justify-evenly fixed top-0 z-50 bg-[#F6B09C] shadow-black/20 shadow-md gap-x-20 lg:gap-x-20 text-black" aria-label="Navegación principal">
+    <!-- Logo con enlace a inicio -->
+    <div class="navbar-start w-auto">
+        <a href="/" aria-label="Ir a página de inicio">
+            <div class="w-16 h-16 lg:w-20 lg:h-20 overflow-visible">
+                <img 
+                    src="/src/assets/img/LogoNegro.webp" 
+                    alt="Logo de la empresa - Maquillaje profesional" 
+                    width="80" 
+                    height="80"
+                    class="w-full h-full object-contain scale-150 lg:scale-250 origin-center"
+                    loading="lazy">
+            </div>
+        </a>
+    </div>
+    
+    <!-- Menú desktop -->
+    <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal gap-1 lg:gap-2 whitespace-nowrap text-md">
+            <li><a href="/" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl" aria-current="page">Inicio</a></li>
+            
+            <li>
+                <details class="relative">
+                    <summary class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl" aria-haspopup="true" aria-expanded="false">Maquillajes</summary>
+                    <ul class="absolute left-0 p-2 rounded-lg whitespace-nowrap min-w-max shadow-black/60 shadow-lg bg-white text-sm" role="menu">
+                        <li><a href="/MSocial" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Maquillaje Social</a></li>
+                        <li><a href="/MQuinceañeras" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Maquillaje para Quinceañeras</a></li>
+                        <li><a href="/MNovias" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Maquillaje para Novias</a></li>
+                    </ul>
+                </details>
+            </li>
+            
+            <li><a href="/HPeinados" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl">Peinados</a></li>
+            <li><a href="/HEscuela" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl">Escuela de Alma</a></li>
+            <li><a href="/HNosotros" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl">Sobre Nosotros</a></li>
+            <li><a href="#contacto" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl">Contacto</a></li>
+        </ul>
+    </div>
+    
+    <!-- Menú móvil -->
+    <div class="navbar-end lg:hidden">
+        <div class="dropdown dropdown-end">
+            <button tabindex="0" role="button" class="btn btn-ghost px-2" aria-label="Menú móvil" aria-expanded="false" aria-controls="mobile-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            <ul id="mobile-menu" tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow border border-[#E5989B]" role="menu">
+                <li><a href="/" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem" aria-current="page">Inicio</a></li>
+                <li>
+                    <details>
+                        <summary class="hover:bg-[#FFB4A2] px-4 py-2 text-black" aria-haspopup="true" aria-expanded="false">Maquillajes</summary>
+                        <ul class="p-2 bg-white" role="menu">
+                            <li><a href="/MSocial" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem">Maquillaje Social</a></li>
+                            <li><a href="/MQuinceañeras" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem">Maquillaje para Quinceañeras</a></li>
+                            <li><a href="/MNovias" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem">Maquillaje para Novias</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li><a href="/HPeinados" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem">Peinados</a></li>
+                <li><a href="/HEscuela" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem">Escuela de Maquillaje</a></li>
+                <li><a href="/HNosotros" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem">Sobre Nosotros</a></li>
+                <li><a href="#contacto" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
