@@ -10,7 +10,7 @@
                 <!-- Imagen -->
                 <div class="lg:order-1">
                     <img 
-                        src="/src/assets/img/Ppremium.webp" 
+                        src="/Ppremium.webp" 
                         alt="Paquete Premium Quinceañeras" 
                         class="w-full h-auto rounded-lg shadow-lg"
                         itemprop="image"
@@ -124,7 +124,7 @@
                 <!-- Imagen -->
                 <div>
                     <img 
-                        src="/src/assets/img/Pluxury.webp" 
+                        src="/Pluxury.webp" 
                         alt="Paquete Luxury Quinceañeras" 
                         class="w-full h-auto rounded-lg shadow-lg"
                         itemprop="image"
@@ -235,51 +235,50 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // Función para manejar el cambio de pestañas con tipos explícitos
-      function handleTabClick(event: MouseEvent) {
-          event.preventDefault();
-          const target = event.currentTarget as HTMLElement;
-          
-          if (!target) return;
-          
-          const tabId = target.getAttribute('data-tab');
-          if (!tabId) return;
-          
-          const tabContainer = target.closest('.grid')?.querySelector('.bg-white');
-          if (!tabContainer) return;
-          
-          // Desactivar todos los botones en este contenedor
-          const buttons = target.parentElement?.querySelectorAll('.tab-btn');
-          buttons?.forEach(function(btn: Element) {
-              btn.classList.remove('bg-[#FFB4A2]', 'text-white');
-              btn.classList.add('bg-gray-200', 'text-gray-800');
-          });
-          
-          // Desactivar todos los contenidos en este contenedor
-          tabContainer.querySelectorAll('.tab-content').forEach(function(content: Element) {
-              content.classList.add('hidden');
-              content.classList.remove('block');
-          });
-          
-          // Activar el botón y contenido seleccionado
-          target.classList.add('bg-[#FFB4A2]', 'text-white');
-          target.classList.remove('bg-gray-200', 'text-gray-800');
-          
-          const content = document.getElementById(tabId);
-          if (content) {
-              content.classList.remove('hidden');
-              content.classList.add('block');
-          }
-      }
-      
-      // Agregar event listeners con el tipo correcto
-      document.querySelectorAll('.tab-btn').forEach(function(btn: Element) {
-          btn.addEventListener('click', (event: Event) => {
-              handleTabClick(event as MouseEvent);
-          });
-      });
-  });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Función para manejar el cambio de pestañas
+        function handleTabClick(event) {
+            event.preventDefault();
+            const target = event.currentTarget;
+            
+            if (!target) return;
+            
+            const tabId = target.getAttribute('data-tab');
+            if (!tabId) return;
+            
+            // Encontrar el contenedor padre más cercano que tenga tabs
+            const tabContainer = target.closest('[itemscope][itemtype="https://schema.org/Offer"]');
+            if (!tabContainer) return;
+            
+            // Desactivar todos los botones en este contenedor
+            const buttons = tabContainer.querySelectorAll('.tab-btn');
+            buttons.forEach(function(btn) {
+                btn.classList.remove('bg-[#FFB4A2]', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-800');
+            });
+            
+            // Desactivar todos los contenidos en este contenedor
+            tabContainer.querySelectorAll('.tab-content').forEach(function(content) {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+            
+            // Activar el botón y contenido seleccionado
+            target.classList.add('bg-[#FFB4A2]', 'text-white');
+            target.classList.remove('bg-gray-200', 'text-gray-800');
+            
+            const content = tabContainer.querySelector('#' + tabId + '-content');
+            if (content) {
+                content.classList.remove('hidden');
+                content.classList.add('block');
+            }
+        }
+        
+        // Agregar event listeners
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', handleTabClick);
+        });
+    });
 </script>
 
 <style>

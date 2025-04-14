@@ -10,7 +10,7 @@
                 <!-- Imagen -->
                 <div class="lg:order-1">
                     <img 
-                        src="/src/assets/img/NPremium.webp" 
+                        src="/NPremium.webp" 
                         alt="Maquillaje premium para novias con técnica de aerografía - Alma Makeup" 
                         class="w-full h-auto rounded-lg shadow-lg"
                         itemprop="image"
@@ -140,7 +140,7 @@
                 <!-- Imagen -->
                 <div>
                     <img 
-                        src="/src/assets/img/Noro.webp" 
+                        src="/Noro.webp" 
                         alt="Maquillaje de lujo para novias con productos de alta gama - Alma Makeup" 
                         class="w-full h-auto rounded-lg shadow-lg"
                         itemprop="image"
@@ -270,28 +270,29 @@
   
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Función para manejar el cambio de pestañas con tipos explícitos
-        function handleTabClick(event: MouseEvent) {
+        // Función para manejar el cambio de pestañas
+        function handleTabClick(event) {
             event.preventDefault();
-            const target = event.currentTarget as HTMLElement;
+            const target = event.currentTarget;
             
             if (!target) return;
             
             const tabId = target.getAttribute('data-tab');
             if (!tabId) return;
             
-            const tabContainer = target.closest('.grid')?.querySelector('.bg-white');
+            // Encontrar el contenedor padre más cercano que tenga tabs
+            const tabContainer = target.closest('[itemscope][itemtype="https://schema.org/Offer"]');
             if (!tabContainer) return;
             
             // Desactivar todos los botones en este contenedor
-            const buttons = target.parentElement?.querySelectorAll('.tab-btn');
-            buttons?.forEach(function(btn: Element) {
+            const buttons = tabContainer.querySelectorAll('.tab-btn');
+            buttons.forEach(function(btn) {
                 btn.classList.remove('bg-[#FFB4A2]', 'text-white');
                 btn.classList.add('bg-gray-200', 'text-gray-800');
             });
             
             // Desactivar todos los contenidos en este contenedor
-            tabContainer.querySelectorAll('.tab-content').forEach(function(content: Element) {
+            tabContainer.querySelectorAll('.tab-content').forEach(function(content) {
                 content.classList.add('hidden');
                 content.classList.remove('block');
             });
@@ -300,18 +301,16 @@
             target.classList.add('bg-[#FFB4A2]', 'text-white');
             target.classList.remove('bg-gray-200', 'text-gray-800');
             
-            const content = document.getElementById(tabId);
+            const content = tabContainer.querySelector('#' + tabId + '-content');
             if (content) {
                 content.classList.remove('hidden');
                 content.classList.add('block');
             }
         }
         
-        // Agregar event listeners con el tipo correcto
-        document.querySelectorAll('.tab-btn').forEach(function(btn: Element) {
-            btn.addEventListener('click', (event: Event) => {
-                handleTabClick(event as MouseEvent);
-            });
+        // Agregar event listeners
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', handleTabClick);
         });
     });
 </script>
