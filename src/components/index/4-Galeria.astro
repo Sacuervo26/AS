@@ -11,72 +11,110 @@
             </p>
         </div>
 
-        <!-- Contenedor del carrusel con aviso superpuesto -->
-        <div class="relative ">       
-
-            <!-- Carrusel de imágenes -->
-            <div class="carousel rounded-box w-full">
-                <div class="carousel-item h-80 w-60">
+        <!-- Contenedor del carrusel optimizado para iOS -->
+        <div class="relative overflow-x-hidden">
+            <!-- Carrusel con mejoras para Safari manteniendo dimensiones -->
+            <div class="carousel rounded-box w-full flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
+                <!-- Item 1 - Manteniendo dimensiones originales -->
+                <div class="carousel-item flex-none snap-start h-80 w-60 relative">
                     <img
                         src="/Galeria8w.webp"
                         alt="Maquillaje profesional"
-                        class="object-top"
+                        class="w-full h-full object-cover object-top"
+                        loading="lazy"
+                        decoding="async"
+                        style="image-rendering: -webkit-optimize-contrast; aspect-ratio: auto 3/4"
                     />
                 </div>
-                <div class="carousel-item h-80 w-auto">
+                
+                <!-- Item 2 -->
+                <div class="carousel-item flex-none snap-start h-80 w-auto relative">
                     <img
                         src="/Galeria3w.webp"
                         alt="Peinado elegante"
-                        class="object-top"
+                        class="h-full w-auto object-cover object-top"
+                        loading="lazy"
+                        decoding="async"
+                        style="image-rendering: -webkit-optimize-contrast"
                     />
                 </div>
-                <div class="carousel-item h-80 w-auto">
+                
+                <!-- Item 3 -->
+                <div class="carousel-item flex-none snap-start h-80 w-auto relative">
                     <img
                         src="/Galeria2w.webp"
                         alt="Maquillaje de novia"
-                        class="w-full h-full object-cover object-top"
+                        class="h-full w-auto object-cover object-top"
+                        loading="lazy"
+                        decoding="async"
+                        style="image-rendering: -webkit-optimize-contrast"
                     />
                 </div>
-                <div class="carousel-item h-80 w-auto">
+                
+                <!-- Item 4 -->
+                <div class="carousel-item flex-none snap-start h-80 w-auto relative">
                     <img
                         src="/Galeria4w.webp"
                         alt="Estilismo profesional"
-                        class="w-full h-full object-cover object-center"
+                        class="h-full w-auto object-cover object-center"
+                        loading="lazy"
+                        decoding="async"
+                        style="image-rendering: -webkit-optimize-contrast"
                     />
                 </div>
-                <div class="carousel-item h-80 w-auto">
+                
+                <!-- Item 5 -->
+                <div class="carousel-item flex-none snap-start h-80 w-auto relative">
                     <img
                         src="/Galeria5w.webp"
                         alt="Transformación de belleza"
-                        class="w-full h-full object-center"
+                        class="h-full w-auto object-cover object-center"
+                        loading="lazy"
+                        decoding="async"
+                        style="image-rendering: -webkit-optimize-contrast"
                     />
                 </div>
-                <div class="carousel-item h-80 w-auto">
+                
+                <!-- Item 6 -->
+                <div class="carousel-item flex-none snap-start h-80 w-auto relative">
                     <img
                         src="/Galeria6w.webp"
                         alt="Peinado para evento"
-                        class="object-top object-cover"
+                        class="h-full w-auto object-cover object-top"
+                        loading="lazy"
+                        decoding="async"
+                        style="image-rendering: -webkit-optimize-contrast"
                     />
                 </div>
-                <div class="carousel-item h-80 w-auto">
+                
+                <!-- Item 7 -->
+                <div class="carousel-item flex-none snap-start h-80 w-auto relative">
                     <img
                         src="/Galeria7w.webp"
                         alt="Maquillaje artístico"
-                        class="w-full h-full object-contain object-top"
+                        class="h-full w-auto object-contain object-top bg-white"
+                        loading="lazy"
+                        decoding="async"
+                        style="image-rendering: -webkit-optimize-contrast"
                     />
                 </div>
-                <div class="carousel-item h-80 w-auto">
+                
+                <!-- Item 8 -->
+                <div class="carousel-item flex-none snap-start h-80 w-auto relative">
                     <img
                         src="/Galeria1w.webp"
                         alt="Maquillaje artístico"
-                        class="w-full h-full object-contain object-top"
+                        class="h-full w-auto object-contain object-top bg-white"
+                        loading="lazy"
+                        decoding="async"
+                        style="image-rendering: -webkit-optimize-contrast"
                     />
                 </div>
             </div>
 
-            <!-- Aviso de deslizar superpuesto -->
+            <!-- Aviso de deslizar mejorado -->
             <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
-                <div class="bg-white/90 text-[#666666] text-xs md:text-sm px-3 py-1 rounded-full flex items-center gap-1 shadow-lg border border-gray-200/50">
+                <div class="bg-white/90 text-[#666666] text-xs md:text-sm px-3 py-1 rounded-full flex items-center gap-1 shadow-lg border border-gray-200/50 backdrop-blur-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 md:h-4 md:w-4 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                     </svg>
@@ -86,3 +124,32 @@
         </div>        
     </div>
 </section>
+
+<style>
+    /* Correcciones específicas para Safari iOS */
+    @supports (-webkit-touch-callout: none) {
+        .carousel {
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 1px; /* Fix para scroll en iOS */
+        }
+        .carousel-item img {
+            max-height: 320px; /* = h-80 */
+            min-width: auto !important;
+        }
+        .carousel-item.w-60 img {
+            width: 240px; /* = w-60 */
+        }
+    }
+    /* Ocultar scrollbar pero mantener funcionalidad */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    /* Asegurar espacio entre items */
+    .space-x-4 > * + * {
+        margin-left: 1rem;
+    }
+</style>
