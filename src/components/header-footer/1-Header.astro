@@ -37,15 +37,15 @@
         </ul>
     </div>
     
-    <!-- Menú móvil -->
+    <!-- Menú móvil corregido para Safari -->
     <div class="navbar-end lg:hidden">
         <div class="dropdown dropdown-end">
-            <button tabindex="0" role="button" class="btn btn-ghost px-2" aria-label="Menú móvil" aria-expanded="false" aria-controls="mobile-menu">
+            <button id="mobile-menu-btn" role="button" class="btn btn-ghost px-2" aria-label="Menú móvil" aria-expanded="false" aria-controls="mobile-menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
-            <ul id="mobile-menu" tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow border border-[#E5989B]" role="menu">
+            <ul id="mobile-menu" class="menu menu-sm dropdown-content hidden bg-white rounded-box z-50 mt-3 w-52 p-2 shadow border border-[#E5989B]" role="menu">
                 <li><a href="/" class="hover:bg-[#FFB4A2] px-4 py-2 text-black" role="menuitem" aria-current="page">Inicio</a></li>
                 <li>
                     <details>
@@ -65,3 +65,73 @@
         </div>
     </div>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Selección de elementos con verificación de tipo
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn') as HTMLButtonElement | null;
+        const mobileMenu = document.getElementById('mobile-menu') as HTMLUListElement | null;
+        
+        // Verificación exhaustiva de elementos
+        if (!mobileMenuBtn || !mobileMenu) {
+            console.error('Elementos del menú no encontrados');
+            return;
+        }
+    
+        // Función para alternar el menú con manejo de tipos
+        function toggleMenu(): void {
+            const currentState = mobileMenuBtn?.getAttribute('aria-expanded');
+            const isExpanded = currentState === 'true';
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+            }
+            
+            if (mobileMenu) {
+                if (isExpanded) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('block');
+                } else {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('block');
+                }
+            }
+        }
+    
+        // Manejador de eventos para el botón con verificación de tipos
+        mobileMenuBtn.addEventListener('click', function(e: MouseEvent) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        });
+    
+        // Manejador para cerrar al hacer clic fuera, con verificación de tipos
+        document.addEventListener('click', function(e: MouseEvent) {
+            const target = e.target as Node | null;
+            
+            if (!target) return;
+            if (!mobileMenu || !mobileMenuBtn) return;
+            
+            const clickedInsideMenu = mobileMenu.contains(target);
+            const clickedOnButton = mobileMenuBtn.contains(target);
+            
+            if (!clickedInsideMenu && !clickedOnButton) {
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('block');
+            }
+        });
+    
+        // Manejador para enlaces del menú con verificación de tipos
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('block');
+                }
+            });
+        });
+    });
+</script>
