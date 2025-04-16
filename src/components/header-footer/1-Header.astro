@@ -67,10 +67,10 @@
 </nav>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Selección de elementos con verificación de tipo
+    document.addEventListener('DOMContentLoaded', () => {
+        // Selección segura de elementos con type assertion
         const mobileMenuBtn = document.getElementById('mobile-menu-btn') as HTMLButtonElement | null;
-        const mobileMenu = document.getElementById('mobile-menu') as HTMLUListElement | null;
+        const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
         
         // Verificación exhaustiva de elementos
         if (!mobileMenuBtn || !mobileMenu) {
@@ -78,60 +78,55 @@
             return;
         }
     
-        // Función para alternar el menú con manejo de tipos
-        function toggleMenu(): void {
-            const currentState = mobileMenuBtn?.getAttribute('aria-expanded');
+        // Función para alternar el menú con manejo de tipos seguro
+        const toggleMenu = (): void => {
+            const currentState = mobileMenuBtn.getAttribute('aria-expanded');
             const isExpanded = currentState === 'true';
             
-            if (mobileMenuBtn) {
-                mobileMenuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
-            }
+            // Corrección: Convertir boolean a string explícitamente
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
             
-            if (mobileMenu) {
-                if (isExpanded) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('block');
-                } else {
-                    mobileMenu.classList.remove('hidden');
-                    mobileMenu.classList.add('block');
-                }
-            }
-        }
+            // Alternar visibilidad usando style.display para máxima compatibilidad con Safari
+            mobileMenu.style.display = isExpanded ? 'none' : 'block';
+        };
     
-        // Manejador de eventos para el botón con verificación de tipos
-        mobileMenuBtn.addEventListener('click', function(e: MouseEvent) {
+        // Manejador de eventos con type assertion para el target
+        const handleButtonClick = (e: MouseEvent): void => {
             e.preventDefault();
             e.stopPropagation();
             toggleMenu();
-        });
+        };
     
-        // Manejador para cerrar al hacer clic fuera, con verificación de tipos
-        document.addEventListener('click', function(e: MouseEvent) {
+        // Manejador para clicks fuera del menú
+        const handleDocumentClick = (e: MouseEvent): void => {
+            // Type assertion seguro para el target
             const target = e.target as Node | null;
-            
             if (!target) return;
-            if (!mobileMenu || !mobileMenuBtn) return;
             
-            const clickedInsideMenu = mobileMenu.contains(target);
-            const clickedOnButton = mobileMenuBtn.contains(target);
-            
-            if (!clickedInsideMenu && !clickedOnButton) {
+            if (!mobileMenu.contains(target) && !mobileMenuBtn.contains(target)) {
                 mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('block');
+                mobileMenu.style.display = 'none';
             }
-        });
+        };
     
-        // Manejador para enlaces del menú con verificación de tipos
+        // Manejador para clicks en enlaces del menú
+        const handleLinkClick = (): void => {
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenu.style.display = 'none';
+        };
+    
+        // Asignación de eventos
+        mobileMenuBtn.addEventListener('click', handleButtonClick);
+        document.addEventListener('click', handleDocumentClick);
+        
+        // Asignación a los enlaces del menú
         const menuLinks = mobileMenu.querySelectorAll('a');
         menuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                if (mobileMenu) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('block');
-                }
-            });
+            link.addEventListener('click', handleLinkClick);
         });
+    
+        // Inicialización del estado
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.style.display = 'none';
     });
-</script>
+    </script>
