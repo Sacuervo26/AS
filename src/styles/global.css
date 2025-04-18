@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: Lora-Italic;
-    font-style: italic;
+    font-style: normal;
     font-weight: 200 700;
     font-display: swap;
     src: url("/src/assets/fonts/Lora-Italic-VariableFont_wght.ttf") format("truetype");
@@ -19,7 +19,7 @@
 
 @font-face {
     font-family: Montserrat-Italic;
-    font-style: italic;
+    font-style: normal;
     font-weight: 200 700;
     font-display: swap;
     src: url("/src/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("truetype");
