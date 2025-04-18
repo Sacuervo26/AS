@@ -1,27 +1,27 @@
-<nav class="w-full navbar px-4 md:px-8 flex flex-row justify-evenly fixed top-0 z-50 bg-[#F6B09C] shadow-black/20 shadow-md gap-x-20 lg:gap-x-20 text-black" aria-label="Navegación principal">
+<nav class="w-full navbar px-4 md:px-8 flex flex-row justify-between fixed top-0 z-50 bg-[#F6B09C] shadow-black/20 shadow-md gap-x-20 lg:gap-x-20 text-black" aria-label="Navegación principal">
     <!-- Logo con enlace a inicio -->
     <div class="navbar-start w-auto">
         <a href="/" aria-label="Ir a página de inicio">
-            <div class="w-20 h-20 lg:w-18 lg:h-18 overflow-visible">
+            <div class="w-20 h-20 overflow-visible">
                 <img 
                     src="/LogoBlanco.png" 
                     alt="Logo de la empresa - Maquillaje profesional" 
                     width="80" 
                     height="80"
-                    class="w-full h-full object-contain scale-200 lg:scale-250 origin-center"
+                    class="w-full h-full object-contain max-sm:pl-6 sm:pl-6 scale-200 sm:scale-200 md:scale-250 lg:scale-250"
                     loading="lazy">
             </div>
         </a>
     </div>
     
     <!-- Menú desktop -->
-    <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal gap-1 lg:gap-2 whitespace-nowrap text-2xl">
-            <li><a href="/" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl" aria-current="page">Inicio</a></li>
+    <div class="navbar-center hidden lg:flex max-xl:hidden">
+        <ul class="menu menu-horizontal gap-1 lg:gap-1 whitespace-nowrap p-0 ">
+            <li><a href="/" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg" aria-current="page">Inicio</a></li>
             
             <li>
                 <details class="relative">
-                    <summary class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl" aria-haspopup="true" aria-expanded="false">Maquillajes</summary>
+                    <summary class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg" aria-haspopup="true" aria-expanded="false">Maquillajes</summary>
                     <ul class="absolute left-0 p-2 rounded-lg whitespace-nowrap min-w-max shadow-black/60 shadow-lg bg-white text-sm" role="menu">
                         <li><a href="/MSocial" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Maquillaje Social</a></li>
                         <li><a href="/MQuince" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Maquillaje para Quinceañeras</a></li>
@@ -30,15 +30,15 @@
                 </details>
             </li>
             
-            <li><a href="/HPeinados" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl">Peinados</a></li>
-            <li><a href="/HEscuela" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl">La Escuela de Alma</a></li>
-            <li><a href="/HNosotros" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl">Sobre Nosotros</a></li>
-            <li><a href="#contacto" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg px-3 py-2 text-lg lg:text-xl">Contacto</a></li>
+            <li><a href="/HPeinados" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg">Peinados</a></li>
+            <li><a href="/HEscuela" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg ">La Escuela de Alma</a></li>
+            <li><a href="/HNosotros" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg ">Sobre Nosotros</a></li>
+            <li><a href="#contacto" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg ">Contacto</a></li>
         </ul>
     </div>
     
     <!-- Menú móvil con checkbox hack -->
-    <div class="navbar-end lg:hidden">
+    <div class="navbar-end lg:hidden max-xl:flex">
         <input type="checkbox" id="mobile-menu-toggle" class="hidden">
         <label for="mobile-menu-toggle" class="btn btn-ghost px-2 cursor-pointer" aria-label="Menú móvil" aria-expanded="false" aria-controls="mobile-menu">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
