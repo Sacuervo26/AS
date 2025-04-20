@@ -1,21 +1,19 @@
-<nav class="w-full navbar px-4 md:px-8 flex flex-row justify-between fixed top-0 z-50 bg-[#F6B09C] shadow-black/20 shadow-md gap-x-20 lg:gap-x-20 text-black" aria-label="Navegación principal">
-    <!-- Logo con enlace a inicio -->
-    <div class="navbar-start w-auto">
+<nav class="w-full navbar px-4 md:px-8 flex flex-row justify-between fixed top-0 z-50 bg-[#F6B09C] shadow-black/20 shadow-md gap-x-20 lg:gap-x-20 text-black font-Montserrat" aria-label="Navegación principal">
+    <!-- Logo con enlace a inicio - Versión responsive corregida -->
+    <div class="navbar-start">
         <a href="/" aria-label="Ir a página de inicio">
-            <div class="w-20 h-20 overflow-visible">
+            <div class="w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 overflow-visible flex items-center">
                 <img 
                     src="/LogoBlanco.png" 
                     alt="Logo de la empresa - Maquillaje profesional" 
-                    width="80" 
-                    height="80"
-                    class="w-full h-full object-contain max-sm:pl-8 sm:pl-8 scale-200 max-sm:scale-200 md:scale-250 lg:scale-250"
+                    class="w-full h-full object-contain"
                     loading="lazy">
             </div>
-        </a>
+        </a> 
     </div>
     
     <!-- Menú desktop -->
-    <div class="navbar-center hidden lg:flex max-xl:hidden">
+    <div class="navbar-center hidden xl:flex max-xl:hidden">
         <ul class="menu menu-horizontal gap-1 lg:gap-1 whitespace-nowrap p-0 ">
             <li><a href="/" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg" aria-current="page">Inicio</a></li>
             
@@ -31,14 +29,25 @@
             </li>
             
             <li><a href="/HPeinados" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg">Peinados</a></li>
-            <li><a href="/HEscuela" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg ">La Escuela de Alma</a></li>
+            
+            <li>
+                <details class="relative">
+                    <summary class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg" aria-haspopup="true" aria-expanded="false">La Escuela de Alma</summary>
+                    <ul class="absolute left-0 p-2 rounded-lg whitespace-nowrap min-w-max shadow-black/60 shadow-lg bg-white text-sm" role="menu">
+                        <li><a href="/HEscuelaDiplomados" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Diplomado y Especialización</a></li>
+                        <li><a href="/HETalleres" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Talleres de Automaquillaje</a></li>
+                        <li><a href="/HECursos" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Cursos de Maquillaje y Peinados</a></li>
+                    </ul>
+                </details>
+            </li>
+            
             <li><a href="/HNosotros" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg ">Sobre Nosotros</a></li>
             <li><a href="#contacto" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg ">Contacto</a></li>
         </ul>
     </div>
         
-    <!-- Menú móvil corregido (sin flecha duplicada) -->
-    <div class="navbar-end lg:hidden max-xl:flex">
+    <!-- Menú móvil -->
+    <div class="navbar-end xl:hidden max-xl:flex">
         <input type="checkbox" id="mobile-menu-toggle" class="hidden">
         <label for="mobile-menu-toggle" class="btn btn-ghost px-2 cursor-pointer" aria-label="Menú móvil" aria-expanded="false" aria-controls="mobile-menu">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,7 +74,23 @@
             </li>
             
             <li><a href="/HPeinados" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">Peinados</a></li>
-            <li><a href="/HEscuela" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">La Escuela de Alma</a></li>
+            
+            <li class="relative">
+                <details class="[&>summary::-webkit-details-marker]:hidden">
+                    <summary class="hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md cursor-pointer relative flex justify-between items-center">
+                        <span>La Escuela de Alma</span>                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <ul class="mt-1 ml-4 space-y-1 border-l-2 border-[#FFB4A2] pl-3">
+                        <li><a href="/HEscuelaDiplomados" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">Diplomado y Especialización</a></li>
+                        <li><a href="/HETalleres" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">Talleres de Automaquillaje</a></li>
+                        <li><a href="/HECursos" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">Cursos de Maquillaje y Peinados</a></li>
+                    </ul>
+                </details>
+            </li>
+            
             <li><a href="/HNosotros" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">Sobre Nosotros</a></li>
             <li><a href="#contacto" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">Contacto</a></li>
         </ul>
@@ -80,7 +105,7 @@
     details[open] summary svg {
         transform: rotate(180deg);
     }
-    /* Ocultar marcador nativo de Safari (alternativa si la clase de Tailwind no funciona) */
+    /* Ocultar marcador nativo de Safari */
     details > summary::-webkit-details-marker {
         display: none;
     }
