@@ -1,5 +1,5 @@
 <nav class="w-full navbar px-4 md:px-8 flex flex-row justify-between fixed top-0 z-50 bg-[#F6B09C] shadow-black/20 shadow-md gap-x-20 lg:gap-x-20 text-black font-Montserrat" aria-label="Navegación principal">
-    <!-- Logo con enlace a inicio - Versión responsive corregida -->
+    <!-- Logo con enlace a inicio -->
     <div class="navbar-start">
         <a href="/" aria-label="Ir a página de inicio">
             <div class="w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 overflow-visible flex items-center">
@@ -18,9 +18,9 @@
             <li><a href="/" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg" aria-current="page">Inicio</a></li>
             
             <li>
-                <details class="relative">
+                <details class="relative group">
                     <summary class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg" aria-haspopup="true" aria-expanded="false">Maquillajes</summary>
-                    <ul class="absolute left-0 p-2 rounded-lg whitespace-nowrap min-w-max shadow-black/60 shadow-lg bg-white text-sm" role="menu">
+                    <ul class="absolute right-0 p-2 rounded-lg whitespace-nowrap min-w-max shadow-black/60 shadow-lg bg-white text-sm" role="menu">
                         <li><a href="/MSocial" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Maquillaje Social</a></li>
                         <li><a href="/MQuince" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Maquillaje para Quinceañeras</a></li>
                         <li><a href="/MNovias" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Maquillaje para Novias</a></li>
@@ -31,9 +31,9 @@
             <li><a href="/HPeinados" class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg">Peinados</a></li>
             
             <li>
-                <details class="relative">
+                <details class="relative group">
                     <summary class="hover:bg-[#FFB4A2] hover:shadow-sm hover:text-white hover:font-semibold rounded-lg text-lg" aria-haspopup="true" aria-expanded="false">La Escuela de Alma</summary>
-                    <ul class="absolute left-0 p-2 rounded-lg whitespace-nowrap min-w-max shadow-black/60 shadow-lg bg-white text-sm" role="menu">
+                    <ul class="absolute right-0 p-2 rounded-lg whitespace-nowrap min-w-max shadow-black/60 shadow-lg bg-white text-sm" role="menu">
                         <li><a href="/HEscuelaDiplomados" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Diplomado y Especialización</a></li>
                         <li><a href="/HETalleres" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Talleres de Automaquillaje</a></li>
                         <li><a href="/HECursos" class="hover:bg-[#FFB4A2] px-4 py-2 w-full text-left" role="menuitem">Cursos de Maquillaje y Peinados</a></li>
@@ -54,11 +54,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </label>
-        <ul id="mobile-menu" class="absolute right-4 sm:right-16 top-20 bg-white rounded-lg z-50 w-64 p-2 shadow-lg border border-[#E5989B] hidden flex-col">
+        <ul id="mobile-menu" class="absolute right-8 max-md:right-4 top-20 bg-white rounded-lg z-50 w-64 p-2 shadow-lg border border-[#E5989B] hidden flex-col">
             <li><a href="/" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">Inicio</a></li>
             
             <li class="relative">
-                <details class="[&>summary::-webkit-details-marker]:hidden">
+                <details class="mobile-submenu [&>summary::-webkit-details-marker]:hidden">
                     <summary class="hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md cursor-pointer relative flex justify-between items-center">
                         <span>Maquillajes</span>                        
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,7 +76,7 @@
             <li><a href="/HPeinados" class="block hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md">Peinados</a></li>
             
             <li class="relative">
-                <details class="[&>summary::-webkit-details-marker]:hidden">
+                <details class="mobile-submenu [&>summary::-webkit-details-marker]:hidden">
                     <summary class="hover:bg-[#FFB4A2] px-4 py-2 text-black rounded-md cursor-pointer relative flex justify-between items-center">
                         <span>La Escuela de Alma</span>                        
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -110,3 +110,40 @@
         display: none;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // 1. Comportamiento para los submenús (desktop y móvil)
+    const setupDetails = (selector: string) => {
+        document.querySelectorAll<HTMLDetailsElement>(selector).forEach(detail => {
+            detail.addEventListener('toggle', function() {
+                if (this.open) {
+                    document.querySelectorAll<HTMLDetailsElement>(selector).forEach(other => {
+                        if (other !== this) other.open = false;
+                    });
+                }
+            });
+        });
+    };
+
+    setupDetails('.navbar-center details');
+    setupDetails('#mobile-menu details');
+
+    // 2. Cerrar menú móvil al hacer clic en enlace
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+    const mobileLinks = document.querySelectorAll<HTMLAnchorElement>('#mobile-menu a');
+
+    // Verificación segura del tipo de elemento
+    if (mobileMenu && mobileToggle && mobileLinks) {
+        const checkbox = mobileToggle as HTMLInputElement;
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                checkbox.checked = false;
+                mobileMenu.style.display = 'none';
+            });
+        });
+    }
+});
+</script>
