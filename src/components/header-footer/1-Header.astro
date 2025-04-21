@@ -97,7 +97,7 @@
 
 <style>
     #mobile-menu-toggle:checked ~ #mobile-menu {
-        display: block;
+        display: flex;
     }
     /* Animación para la flecha */
     details[open] summary svg {
@@ -107,9 +107,35 @@
     details > summary::-webkit-details-marker {
         display: none;
     }
+
+    /* Nuevos estilos agregados */
+    #mobile-menu {
+        max-height: calc(100vh - 5rem);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    }
+
+    /* Estilos específicos para móvil en horizontal */
+    @media (max-width: 640px) and (orientation: landscape) {
+        #mobile-menu {
+            position: fixed;
+            right: 0.5rem;
+            left: 0.5rem;
+            top: 4rem;
+            max-height: 60vh;
+            width: auto;
+            overflow-y: auto;
+        }
+        
+        #mobile-menu details[open] ul {
+            max-height: 10rem;
+            overflow-y: auto;
+        }
+    }
 </style>
 
 <script>
+    /* Tu script existente permanece exactamente igual */
     document.addEventListener('DOMContentLoaded', function() {
     // 1. Comportamiento para los submenús (desktop y móvil)
     const setupDetails = (selector: string) => {
