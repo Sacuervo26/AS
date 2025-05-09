@@ -1,17 +1,17 @@
 <section class="w-full bg-[#fcefe9] py-8 mt-8 sm:mt-8 md:mt-16 lg:py-20">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-8 md:gap-12 lg:grid-cols-2 lg:items-stretch"> <!-- Cambiado a items-stretch -->
-            <!-- Imagen a la izquierda - Contenedor ajustado -->
-            <div class="flex items-center justify-center"> <!-- Añadido items-center -->
-                <div class="transition-all hover:scale-105 overflow-hidden w-full flex justify-evenly">
+        <div class="flex flex-col gap-8 md:gap-12">
+            <!-- Imagen arriba -->
+            <div class="flex justify-center">
+                <div class="transition-all hover:scale-105 overflow-hidden w-full flex justify-center">
                     <a href="#home" class="w-48 sm:w-64 md:w-80 inline-block">
-                        <img src="/Luisa.png" alt="Luisa Sánchez" class="w-full h-auto" /> <!-- Añadido rounded-lg para consistencia -->
+                        <img src="/Luisa.png" alt="Luisa Sánchez" class="w-full h-auto rounded-lg" />
                     </a>
                 </div>
             </div>
             
-            <!-- Contenido a la derecha con scroll -->
-            <div class="bg-white p-6 rounded-lg shadow-lg overflow-y-auto max-h-[500px] scroll-smooth">
+            <!-- Contenido abajo -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-2xl md:text-3xl font-bold text-black/70 mb-4">Luisa Sánchez Santos – Fundadora de AlmaMakeup</h2>
                 
                 <div class="text-base text-black/70 text-justify leading-relaxed space-y-4">
@@ -52,7 +52,7 @@
                     </p>
                 </div>
                 
-                <!-- Botón con los nuevos colores -->
+                <!-- Botón -->
                 <div class="mt-8 text-center">
                     <a href="http://wa.me/573165246636" class="inline-block bg-[#FFB4A2] hover:bg-[#e69c8a] px-6 py-3 text-white rounded-lg shadow-md transition-colors font-medium">
                         Contacto
@@ -62,27 +62,3 @@
         </div>
     </div>
 </section>
-
-<style>
-    /* Estilos personalizados para el scroll */
-    .scroll-smooth::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-    }
-    
-    .scroll-smooth::-webkit-scrollbar-thumb {
-        background-color: rgba(255, 180, 162, 0.8);
-        border-radius: 10px;
-    }
-    
-    .scroll-smooth::-webkit-scrollbar-track {
-        background-color: rgba(248, 250, 252, 0.2);
-        border-radius: 10px;
-    }
-    
-    /* Para Firefox */
-    .scroll-smooth {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255, 180, 162, 0.8) rgba(248, 250, 252, 0.2);
-    }
-</style>
