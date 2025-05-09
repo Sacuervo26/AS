@@ -1,17 +1,17 @@
 <section class="w-full bg-[#fcefe9] py-8 mt-8 sm:mt-8 md:mt-16 lg:py-20">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col gap-8 md:gap-12">
-            <!-- Imagen arriba -->
-            <div class="flex justify-center">
-                <div class="transition-all hover:scale-105 overflow-hidden w-full flex justify-center">
+        <div class="flex flex-col gap-0 relative">
+            <!-- Imagen (detrás del recuadro) -->
+            <div class="flex justify-center -mt-12 z-0">
+                <div class="w-full flex justify-center">
                     <a href="#home" class="w-48 sm:w-64 md:w-80 inline-block">
-                        <img src="/Luisa.png" alt="Luisa Sánchez" class="w-full h-auto rounded-lg" />
+                        <img src="/Luisa.png" alt="Luisa Sánchez" class="w-full h-auto" />
                     </a>
                 </div>
             </div>
             
-            <!-- Contenido abajo -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
+            <!-- Recuadro blanco (encima de la imagen) -->
+            <div class="bg-white p-6 rounded-lg shadow-lg pt-12 relative z-10">
                 <h2 class="text-2xl md:text-3xl font-bold text-black/70">Luisa Sánchez Santos</h2>                
                 <p class="text-xl md:text-2xl font-bold text-black/70 mb-4">Fundadora de AlmaMakeup</p>
 
@@ -53,7 +53,7 @@
                     </p>
                 </div>
                 
-                <!-- Botón -->
+                <!-- Botón de contacto -->
                 <div class="mt-8 text-center">
                     <a href="http://wa.me/573165246636" class="inline-block bg-[#FFB4A2] hover:bg-[#e69c8a] px-6 py-3 text-white rounded-lg shadow-md transition-colors font-medium">
                         Contacto
