@@ -19,6 +19,7 @@ body.alma { margin: 0; isolation: isolate; color: var(--alma-ink); font-family: 
 .alma-world { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--alma-earth); }
 .alma-world__image, .alma-world__tint { position: absolute; inset: 0; }
 .alma-world__image { background: url('/estudio/alma-parallax-short.webp') center var(--alma-image-position, 15%) / auto var(--alma-image-height, max(118%, 150vw)) no-repeat; filter: saturate(.85); }
+.alma-world__image[data-scene] { opacity: 0; background-image: none; }
 .alma-world__tint { background: linear-gradient(90deg, rgba(25,17,14,.80), rgba(25,17,14,.60) 47%, rgba(25,17,14,.35)), linear-gradient(0deg, #1b120f45, transparent 75%); }
 .alma-wrap { width: min(100%, 1740px); margin-inline: auto; padding-inline: 7vw; }
 

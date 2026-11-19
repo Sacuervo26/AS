@@ -10,6 +10,7 @@ interface Props {
   description?: string;
 }
 const { title = 'ALMA Studio & Academy', home = false, description = 'Maquillaje y peinado premium a domicilio en Bogotá. Formación profesional en La Escuela de Alma.' } = Astro.props;
+const scenes = ['experiencias', 'academia', 'galeria', 'contacto'];
 ---
 <!doctype html>
 <html lang="es">
@@ -24,6 +25,9 @@ const { title = 'ALMA Studio & Academy', home = false, description = 'Maquillaje
 <body class="alma">
   <div class="alma-world" aria-hidden="true">
     <div class="alma-world__image"></div>
+    {home && scenes.map(scene => (
+      <div class="alma-world__image" data-scene={scene} data-source={`/estudio/alma-parallax-${scene}.webp`}></div>
+    ))}
     <div class="alma-world__tint"></div>
   </div>
   <a class="alma-skip" href="#contenido">Saltar al contenido</a>
