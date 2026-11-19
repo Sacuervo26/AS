@@ -10,7 +10,29 @@ interface Props {
   description?: string;
 }
 const { title = 'ALMA Studio & Academy', home = false, description = 'Maquillaje y peinado premium a domicilio en Bogotá. Formación profesional en La Escuela de Alma.' } = Astro.props;
-const scenes = ['experiencias', 'academia', 'galeria', 'contacto'];
+type Scene = { asset: string; anchor: string };
+type DetailScenes = { base: string; scenes: Scene[] };
+const scene = (asset: string, anchor: string): Scene => ({ asset, anchor });
+const footer = (asset = 'contacto') => scene(asset, 'detalle-final');
+const details: Record<string, DetailScenes> = {
+  '/MSocial': { base: 'experiencias', scenes: [scene('galeria', 'detalle-1'), footer()] },
+  '/MQuince': { base: 'galeria', scenes: [scene('experiencias', 'detalle-1'), footer()] },
+  '/MNovias': { base: 'experiencias', scenes: [scene('galeria', 'detalle-1'), footer()] },
+  '/HPeinados': { base: 'galeria', scenes: [scene('experiencias', 'detalle-1'), scene('academia', 'detalle-2'), footer()] },
+  '/HEscuela': { base: 'academia', scenes: [footer()] },
+  '/HEscuelaDiplomados': { base: 'academia', scenes: [footer('galeria')] },
+  '/HETalleres': { base: 'academia', scenes: [scene('experiencias', 'detalle-1'), footer()] },
+  '/HENosotros': { base: 'galeria', scenes: [scene('experiencias', 'detalle-1'), footer()] },
+  '/HContacto': { base: 'contacto', scenes: [scene('galeria', 'detalle-1')] },
+};
+const path = Astro.url.pathname.replace(/\/$/, '');
+const detail = details[path];
+const baseScene = home ? 'short' : detail?.base ?? 'short';
+const scenes = home
+  ? ['experiencias', 'academia', 'galeria', 'contacto'].map(asset => scene(asset, asset))
+  : detail?.scenes ?? [];
+const assetPath = (asset: string, mobile = false) => `/estudio/alma-parallax-${asset}${mobile ? '-mobile' : ''}.webp`;
+const backgroundStyle = `--alma-image-desktop: url('${assetPath(baseScene)}'); --alma-image-mobile: url('${assetPath(baseScene, true)}');`;
 ---
 <!doctype html>
 <html lang="es">
@@ -23,10 +45,10 @@ const scenes = ['experiencias', 'academia', 'galeria', 'contacto'];
   <title>{title}</title>
 </head>
 <body class="alma">
-  <div class="alma-world" aria-hidden="true">
+  <div class="alma-world" aria-hidden="true" style={backgroundStyle}>
     <div class="alma-world__image"></div>
-    {home && scenes.map(scene => (
-      <div class="alma-world__image" data-scene={scene} data-source={`/estudio/alma-parallax-${scene}.webp`}></div>
+    {scenes.map(({ asset, anchor }) => (
+      <div class="alma-world__image" data-scene={anchor} data-source={assetPath(asset)} data-mobile={assetPath(asset, true)}></div>
     ))}
     <div class="alma-world__tint"></div>
   </div>
@@ -35,7 +57,7 @@ const scenes = ['experiencias', 'academia', 'galeria', 'contacto'];
   <main id="contenido" class:list={['alma-main', { 'alma-detail': !home }]}>
     <slot />
   </main>
-  <div class="alma-footer"><Footer /></div>
+  <div class="alma-footer" id="detalle-final"><Footer /></div>
 </body>
 </html>
 
