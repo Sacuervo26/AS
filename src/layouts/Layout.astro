@@ -1,19 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+import Header from '../components/header-footer/1-Header.astro';
+import Footer from '../components/header-footer/5-Footer.astro';
+import '../styles/global.css';
+import '../styles/alma.css';
+
+interface Props {
+  title?: string;
+  home?: boolean;
+  description?: string;
+}
+const { title = 'ALMA Studio & Academy', home = false, description = 'Maquillaje y peinado premium a domicilio en Bogotá. Formación profesional en La Escuela de Alma.' } = Astro.props;
+type Scene = { asset: string; anchor: string };
+type DetailScenes = { base: string; scenes: Scene[] };
+const scene = (asset: string, anchor: string): Scene => ({ asset, anchor });
+const footer = (asset = 'contacto') => scene(asset, 'detalle-final');
+const details: Record<string, DetailScenes> = {
+  '/MSocial': { base: 'experiencias', scenes: [scene('galeria', 'detalle-1'), footer()] },
+  '/MQuince': { base: 'galeria', scenes: [scene('experiencias', 'detalle-1'), footer()] },
+  '/MNovias': { base: 'experiencias', scenes: [scene('galeria', 'detalle-1'), footer()] },
+  '/HPeinados': { base: 'galeria', scenes: [scene('experiencias', 'detalle-1'), scene('academia', 'detalle-2'), footer()] },
+  '/HEscuela': { base: 'academia', scenes: [footer()] },
+  '/HEscuelaDiplomados': { base: 'academia', scenes: [footer('galeria')] },
+  '/HETalleres': { base: 'academia', scenes: [scene('experiencias', 'detalle-1'), footer()] },
+  '/HENosotros': { base: 'galeria', scenes: [scene('experiencias', 'detalle-1'), footer()] },
+  '/HContacto': { base: 'contacto', scenes: [scene('galeria', 'detalle-1')] },
+};
+const path = Astro.url.pathname.replace(/\/$/, '');
+const detail = details[path];
+const baseScene = home ? 'short' : detail?.base ?? 'short';
+const scenes = home
+  ? ['experiencias', 'academia', 'galeria', 'contacto'].map(asset => scene(asset, asset))
+  : detail?.scenes ?? [];
+const assetPath = (asset: string, mobile = false) => `/estudio/alma-parallax-${asset}${mobile ? '-mobile' : ''}.webp`;
+const backgroundStyle = `--alma-image-desktop: url('${assetPath(baseScene)}'); --alma-image-mobile: url('${assetPath(baseScene, true)}');`;
+---
+<!doctype html>
+<html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
-	<link rel="shortcut icon" href="/public/faviconr.png" type="image/x-icon">
-	<link
-		rel="stylesheet"
-		href="/src/assets/fonts/fontawesome-free-6.1.2-web/css/all.min.css"
-	/>
-	<meta name="generator" content={Astro.generator} />
-	<title>AlmaStudio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#241b18">
+  <link rel="icon" href="/FaviconRosado.png" type="image/png">
+  <title>{title}</title>
 </head>
-<body>
-	<body class="font-Lora">
-		<slot />
-	</body>	
+<body class="alma">
+  <div class="alma-world" aria-hidden="true" style={backgroundStyle}>
+    <div class="alma-world__image"></div>
+    {scenes.map(({ asset, anchor }) => (
+      <div class="alma-world__image" data-scene={anchor} data-source={assetPath(asset)} data-mobile={assetPath(asset, true)}></div>
+    ))}
+    <div class="alma-world__tint"></div>
+  </div>
+  <a class="alma-skip" href="#contenido">Saltar al contenido</a>
+  <Header />
+  <main id="contenido" class:list={['alma-main', { 'alma-detail': !home }]}>
+    <slot />
+  </main>
+  <div class="alma-footer" id="detalle-final"><Footer /></div>
 </body>
 </html>
+
+<script>
+  import '../scripts/alma-scroll';
+</script>

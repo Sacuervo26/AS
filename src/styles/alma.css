@@ -1,0 +1,189 @@
+/* The continuous studio image replaces the reference concept's video. */
+:root {
+  color-scheme: dark;
+  --alma-ink: #fff8ed;
+  --alma-muted: #f2e0d2;
+  --alma-accent: #f0c6aa;
+  --alma-earth: #241b18;
+  --alma-paper: #f4ddc8;
+  --alma-border: rgba(255, 234, 215, .23);
+  --alma-glass: rgba(33, 24, 19, .67);
+}
+html { background: var(--alma-earth); scroll-padding-top: 105px; scroll-behavior: smooth; }
+body.alma { margin: 0; isolation: isolate; color: var(--alma-ink); font-family: Montserrat, system-ui, sans-serif; line-height: 1.65; }
+.alma [hidden] { display: none !important; }
+.alma button, .alma summary { cursor: pointer; }
+.alma a:focus-visible, .alma summary:focus-visible, .alma button:focus-visible, .alma [tabindex]:focus-visible { outline: 2px solid #ffddba; outline-offset: 5px; }
+.alma-skip { position: fixed; top: 8px; left: 12px; z-index: 110; transform: translateY(-140%); border-radius: 30px; padding: 12px 20px; background: var(--alma-paper); color: var(--alma-earth); }
+.alma-skip:focus { transform: translateY(0); }
+.alma-world { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--alma-earth); }
+.alma-world__image, .alma-world__tint { position: absolute; inset: 0; }
+.alma-world__image { background: var(--alma-image-desktop) center var(--alma-image-position, 15%) / auto var(--alma-image-height, max(118%, 150vw)) no-repeat; filter: saturate(.85); }
+.alma-world__image[data-scene] { opacity: 0; background-image: none; }
+.alma-picture { display: contents; }
+@media (max-width: 700px) { .alma-world__image:not([data-scene]) { background-image: var(--alma-image-mobile); } }
+.alma-world__tint { background: linear-gradient(90deg, rgba(25,17,14,.80), rgba(25,17,14,.60) 47%, rgba(25,17,14,.35)), linear-gradient(0deg, #1b120f45, transparent 75%); }
+.alma-wrap { width: min(100%, 1740px); margin-inline: auto; padding-inline: 7vw; }
+
+.alma-header { position: fixed; z-index: 50; left: 3%; right: 3%; top: max(20px, env(safe-area-inset-top)); height: 74px; padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border: 1px solid var(--alma-border); border-radius: 50px; background: #211813ad; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 8px 35px #0004; }
+.alma-logo { display: flex; align-items: center; flex: none; }
+.alma-logo img { display: block; width: 95px; height: 43px; object-fit: contain; filter: brightness(0) invert(1); }
+.alma-nav { display: flex; gap: clamp(16px, 2.5vw, 34px); align-items: center; font-size: .875rem; }
+.alma-nav a[aria-current="page"], .alma-menu-group[open] > summary, .alma-nav a:hover { color: var(--alma-accent); }
+.alma-header-actions { display: flex; gap: 10px; align-items: center; }
+.alma-pill, .alma-button, .alma-main .btn { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; gap: .5rem; text-align: center; border: 1px solid #fff2; border-radius: 40px; background: var(--alma-paper); color: #30221b; padding: 11px 20px; font-size: .875rem; font-weight: 600; white-space: normal; box-shadow: 0 8px 25px #0002; text-decoration: none; transition: background .2s, transform .2s; }
+.alma-button { min-height: 52px; padding: 14px 24px; }
+.alma-pill:hover, .alma-button:hover, .alma-main .btn:hover { background: #ffe9d6; color: #30221b; transform: translateY(-2px); }
+.alma-menu-group { position: relative; }
+.alma-menu-group summary { display: flex; gap: 9px; align-items: center; min-height: 44px; list-style: none; white-space: nowrap; }
+.alma-menu-group summary::-webkit-details-marker { display: none; }
+.alma-menu-group summary span { display: block; width: 6px; height: 6px; margin-top: -3px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg); }
+.alma-nav-panel { position: absolute; top: calc(100% + 12px); left: -12px; min-width: 240px; overflow: auto; color: var(--alma-ink); background: #32231cf8; border: 1px solid var(--alma-border); border-radius: 18px; padding: 10px; box-shadow: 0 18px 45px #0006; }
+.alma-nav-panel a { display: flex; align-items: center; min-height: 40px; padding: 8px 13px; border-radius: 10px; white-space: normal; }
+.alma-nav-panel a:hover, .alma-nav-panel a[aria-current="page"] { background: #fff1; color: var(--alma-accent); }
+.alma-mobile-menu { display: none; }
+
+.alma-main h1, .alma-main h2, .alma-main h3 { font-family: Lora, Georgia, serif; font-weight: 400; text-wrap: balance; letter-spacing: -.035em; }
+.alma-main em { color: var(--alma-accent); font-family: Lora-Italic, Lora, Georgia, serif; font-weight: 400; font-style: normal; }
+.alma-main h2 { font-size: clamp(2.2rem, 5vw, 5rem); line-height: 1.12; }
+.alma-main h3 { font-size: clamp(1.55rem, 3vw, 2.8rem); line-height: 1.15; }
+.alma-kicker { margin: 0 0 1.4rem; text-transform: uppercase; letter-spacing: .18em; color: var(--alma-accent); font-size: .875rem; font-weight: 600; }
+.alma-glass { border: 1px solid var(--alma-border); border-radius: 16px; background: var(--alma-glass); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 20px 60px #0003; }
+.alma-link-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.alma-text-link { display: inline-flex; min-height: 44px; align-items: center; font-size: .875rem; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; }
+.alma-text-link:hover { color: var(--alma-accent); }
+
+.alma-hero { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 8vw, 10rem); align-items: center; min-height: 106svh; padding-block: 145px 110px; }
+.alma-hero__copy { position: relative; z-index: 2; max-width: 650px; }
+.alma-hero h1 { font-size: clamp(3.4rem, 6.35vw, 7rem); line-height: 1.02; text-wrap: initial; }
+.alma-hero h1 > span { white-space: nowrap; }
+.alma-hero h1 em { white-space: nowrap; letter-spacing: -.06em; }
+.alma-hero__intro { max-width: 32rem; margin: 24px 0 28px; color: var(--alma-muted); font-size: clamp(1rem, 1.6vw, 1.15rem); text-shadow: 0 2px 22px #000d; }
+.alma-hero__visual { position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; }
+.alma-portrait { width: 94%; max-width: 390px; aspect-ratio: .84; border-radius: 48% 48% 10px 10px; overflow: hidden; transform: rotate(-5deg); background: #74584c; box-shadow: 0 30px 80px #0008; }
+.alma-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.alma-orbit { position: absolute; bottom: 0; right: -12px; font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; writing-mode: vertical-rl; }
+.alma-star { position: absolute; top: -22px; right: 1%; font-size: clamp(1.75rem, 4vw, 3.2rem); color: var(--alma-accent); }
+.alma-hero__bottom { position: absolute; bottom: 34px; left: 7vw; right: 7vw; display: flex; justify-content: space-between; gap: 20px; color: var(--alma-muted); text-transform: uppercase; font-size: .75rem; letter-spacing: .12em; }
+.alma-hero__bottom a { text-underline-offset: 5px; text-decoration: underline; }
+
+.alma-experiences { padding-block: 94px 78px; }
+.alma-stage-heading { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 3vw; margin-bottom: 35px; }
+.alma-stage-heading h2 { font-size: clamp(2.3rem, 4vw, 4.4rem); }
+.alma-stage-heading div p:last-child { max-width: 33rem; color: var(--alma-muted); }
+.alma-scene { display: grid; grid-template-columns: 1.08fr 1fr; align-items: center; gap: clamp(1.5rem, 5.5vw, 6rem); margin: 0 0 20px; }
+.alma-scene__photo { min-height: 240px; aspect-ratio: 1.3; max-height: 540px; border-radius: 14px; overflow: hidden; box-shadow: 0 20px 70px #0006; }
+.alma-scene__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.alma-scene__copy, .alma-academy__copy { padding: clamp(22px, 3vw, 42px); }
+.alma-scene__copy p:not(.alma-kicker), .alma-academy__copy p:not(.alma-kicker) { margin: 18px 0; color: var(--alma-muted); }
+.alma-experience-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 19px; }
+.alma-experience-controls button { min-height: 44px; border: 1px solid var(--alma-border); background: #2b201bd9; border-radius: 40px; padding: 8px 18px; color: var(--alma-muted); font-size: .875rem; }
+.alma-experience-controls [aria-pressed="true"], .alma-experience-controls button:hover { background: var(--alma-accent); color: #241d1b; }
+.alma-feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 34px; }
+.alma-feature { display: grid; grid-template-columns: minmax(96px, 26%) 1fr; min-width: 0; overflow: hidden; align-items: stretch; }
+.alma-feature > img, .alma-feature > .alma-picture > img { width: 100%; height: 100%; min-height: 115px; object-fit: cover; }
+.alma-feature > div { padding: 14px 18px 16px; }
+.alma-feature h3 { margin-bottom: 7px; font-size: clamp(1.2rem, 2vw, 1.7rem); }
+.alma-feature p { color: var(--alma-muted); }
+.alma-academy { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(2rem, 8vw, 8rem); min-height: 90svh; padding-block: 110px; }
+.alma-academy__image { position: relative; transform: rotate(-2deg); max-width: 510px; }
+.alma-academy__image > img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px; box-shadow: 0 25px 80px #0008; }
+.alma-academy__image span { position: absolute; bottom: 17px; left: 17px; background: var(--alma-paper); color: #30221b; padding: 8px 12px; border-radius: 4px; text-transform: uppercase; font-size: .75rem; letter-spacing: .09em; }
+.alma-contact { min-height: 72svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-block: 95px; }
+.alma-contact h2 { text-shadow: 0 5px 28px #0008; margin-bottom: 30px; }
+.alma-contact .alma-link-row { justify-content: center; }
+
+.alma-gallery { padding-block: 24px 60px; }
+.alma-gallery > section { background: transparent; }
+.alma-gallery > section > .container { padding-inline: 0; }
+.alma-gallery .container > .bg-white { background: var(--alma-glass); border: 1px solid var(--alma-border); border-radius: 16px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.alma-gallery h2 { color: var(--alma-ink); font-size: clamp(2.15rem, 3.8vw, 4.1rem); }
+.alma-gallery .container > .bg-white > p { color: var(--alma-muted); font: inherit; font-size: 1rem; }
+.alma-gallery .carousel { border-radius: 14px; }
+.alma-gallery .carousel-item img { background: var(--alma-earth); }
+.alma-gallery .carousel-item { margin-inline-end: 6px; }
+.alma-gallery .relative > .absolute > div { background: #33251fef; border-color: var(--alma-border); color: var(--alma-ink); font-size: .875rem; }
+
+.alma-detail { padding-top: 112px; padding-bottom: 46px; min-height: 70svh; }
+.alma-detail > section { margin-top: 0; }
+.alma-detail [class*="bg-[#fcefe9]"], .alma-detail [class*="bg-[#ffe1d6]"], .alma-detail [class*="bg-[#FFF8F1]"], .alma-detail > .bg-white { background: transparent; }
+.alma-detail [class~="pt-16"] { padding-top: 0; }
+.alma-detail [class~="py-6"] { padding-block: clamp(24px, 4vw, 70px); }
+.alma-detail :where(.bg-white, .bg-gray-100, .bg-gray-50, .card) { background: var(--alma-glass); border: 1px solid var(--alma-border); border-radius: 16px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.alma-detail [class*="text-black/"], .alma-detail [class*="text-gray-"], .alma-detail [class*="text-[#666666]"] { color: var(--alma-muted); }
+.alma-detail h1, .alma-detail h2, .alma-detail h3, .alma-detail h1 > span { color: var(--alma-ink); }
+.alma-detail h1 { font-size: clamp(2rem, 4vw, 3.9rem); line-height: 1.15; }
+.alma-detail h2 { font-size: clamp(1.75rem, 3.9vw, 3.5rem); }
+.alma-detail h3 { font-size: clamp(1.15rem, 2.1vw, 1.5rem); letter-spacing: -.015em; }
+.alma-detail :is(p,li) { font-size: 1rem; }
+.alma-detail .card-title { font-size: clamp(1.55rem, 3vw, 2.35rem); }
+.alma-detail [class*="text-[#d45d3a]"] { color: var(--alma-accent); }
+.alma-detail .tab-btn { min-height: 44px; border: 1px solid var(--alma-border); border-radius: 27px; padding: 8px 16px; color: var(--alma-ink); background: #2b201bd9; font-size: .875rem; font-weight: 600; }
+.alma-detail .tab-btn[aria-selected="true"], .alma-detail .tab-btn[class*="bg-[#FFB4A2]"], .alma-detail .tab-btn:hover { background: var(--alma-accent) !important; color: var(--alma-earth) !important; }
+.alma-detail .tab-content li { margin-block: .15em; }
+.alma-detail .tab-content { line-height: 1.65; }
+.alma-detail .tab-content h3 { font-size: 1.1rem; }
+.alma-detail .tab-content:focus-visible { border-radius: 4px; }
+.alma-detail [class*="gap-2"]:has(> .tab-btn) { flex-wrap: wrap; }
+.alma-detail iframe { border-radius: 14px; }
+.alma-detail a:hover:not(.btn) { color: var(--alma-accent); }
+
+.alma-footer > footer { display: block; color: var(--alma-muted); background: #241b18b8; border-top: 1px solid var(--alma-border); padding: 40px 5vw; }
+.alma-footer footer > .container { max-width: 1340px; margin-inline: auto; }
+.alma-footer .footer-title { opacity: 1; color: var(--alma-accent); text-transform: none; font-size: .875rem; }
+.alma-footer iframe { max-width: 100%; }
+
+@media (max-width: 900px) {
+  .alma-header { left: 4%; right: 4%; top: max(12px, env(safe-area-inset-top)); height: 64px; padding: 8px 15px; gap: 12px; }
+  .alma-logo img { width: 76px; height: 39px; }
+  .alma-nav { display: none; }
+  .alma-mobile-menu { display: block; position: static; }
+  .alma-mobile-menu > summary { width: 44px; justify-content: center; border-radius: 40px; border: 1px solid var(--alma-border); }
+  .alma-mobile-menu .alma-nav-panel { top: calc(100% + 8px); left: auto; right: 0; width: min(320px, 100%); max-height: calc(100dvh - 100px); font-size: .875rem; overscroll-behavior: contain; }
+  .alma-mobile-subgroup { margin: 4px 0; border-block: 1px solid #fff2; padding-block: 5px; }
+  .alma-mobile-subgroup p { padding: 9px 13px 2px; font-size: .875rem; color: var(--alma-accent); font-weight: 600; }
+  .alma-hero { gap: 3.5vw; padding-top: 115px; min-height: 90svh; }
+  .alma-hero h1 { font-size: clamp(2.95rem, 6.2vw, 6.8rem); }
+  .alma-footer iframe { width: min(100%, 340px); }
+}
+@media (max-width: 700px) {
+  .alma-world__tint { background: linear-gradient(90deg, #1b120fce, #1b120f7c), linear-gradient(0deg, #1b120f2b, transparent); }
+  .alma-hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-block: calc(118px + env(safe-area-inset-top, 0px)) 50px; gap: 29px; }
+  .alma-hero__copy { width: 100%; }
+  .alma-hero .alma-link-row { justify-content: center; }
+  .alma-hero h1 { font-size: clamp(2.55rem, 10.6vw, 4.85rem); }
+  .alma-hero__intro { margin: 18px auto 21px; }
+  .alma-hero__visual { align-self: center; width: min(75%, 300px); min-height: 205px; padding-bottom: 21px; }
+  .alma-portrait { max-width: 225px; }
+  .alma-star { top: -11px; }
+  .alma-orbit { right: 0; left: 0; bottom: -4px; text-align: center; writing-mode: horizontal-tb; font-size: .69rem; }
+  .alma-hero__bottom { position: static; justify-content: center; flex-direction: column; align-items: center; gap: 7px; font-size: .69rem; }
+  .alma-stage-heading, .alma-scene, .alma-academy { grid-template-columns: 1fr; gap: 23px; }
+  .alma-stage-heading { margin-bottom: 22px; }
+  .alma-stage-heading .alma-kicker { margin-bottom: 10px; }
+  .alma-stage-heading h2 { font-size: clamp(2.1rem, 9vw, 3.55rem); }
+  .alma-experiences { padding-block: 70px 44px; }
+  .alma-scene__photo { min-height: 0; max-height: 340px; aspect-ratio: 1.35; }
+  .alma-scene__copy .alma-kicker { margin-bottom: 12px; }
+  .alma-experience-controls button { padding-inline: 11px; }
+  .alma-feature-grid { grid-template-columns: 1fr; margin-top: 22px; }
+  .alma-feature { grid-template-columns: 1fr; }
+  .alma-feature > img, .alma-feature > .alma-picture > img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; background: #33241f; }
+  .alma-feature > div { padding: 18px 20px 21px; }
+  .alma-academy { min-height: 0; padding-block: 66px; }
+  .alma-academy__image { width: min(88%, 480px); margin-inline: auto; }
+  .alma-contact { min-height: 61svh; padding-block: 72px; }
+  .alma-gallery { padding-bottom: 24px; }
+  .alma-detail { padding-top: 90px; }
+  .alma-detail > section h1 { font-size: clamp(1.85rem, 8vw, 2.6rem); }
+}
+@media (max-width: 345px) {
+  .alma-hero h1 { font-size: 2.3rem; }
+  .alma-pill { padding-inline: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .alma * { transition: none !important; animation: none !important; }
+  .alma-world__image { background-position: center 15%; }
+  .alma-portrait, .alma-academy__image { transform: none; }
+}
