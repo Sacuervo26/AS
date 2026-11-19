@@ -1,21 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from '../components/header-footer/1-Header.astro';
+import Layout from '../layouts/Layout.astro';
 import Talleres from '../components/escuela/taller.astro';
-import Footer from '../components/header-footer/5-Footer.astro';
-import "../styles/global.css";
 ---
 
-<Layout>
-    <header>
-		<Header />
-	</header>
-    <main>
-		<section>
-			<Talleres />
-		</section>
-	</main>
-    <footer>
-		<Footer />
-	</footer>    
+<Layout title="Talleres de Automaquillaje | ALMA Studio & Academy">
+  <Talleres />
 </Layout>

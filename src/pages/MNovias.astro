@@ -1,21 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from '../components/header-footer/1-Header.astro';
-import Novias from "../components/maquillajes/Novias.astro";
-import Footer from '../components/header-footer/5-Footer.astro';
-import "../styles/global.css";
+import Layout from '../layouts/Layout.astro';
+import Novias from '../components/maquillajes/Novias.astro';
 ---
 
-<Layout>
-    <header>
-		<Header />
-	</header>
-    <main>
-		<section>
-			<Novias />
-		</section>
-	</main>
-    <footer>
-		<Footer />
-	</footer>    
+<Layout title="Maquillaje para Novias | ALMA Studio & Academy">
+  <Novias />
 </Layout>

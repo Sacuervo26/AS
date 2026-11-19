@@ -1,32 +1,110 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/header-footer/1-Header.astro';
-import Banner from '../components/index/2-Banner.astro';
-import Servicios from '../components/index/3-Servicios.astro';
 import Galeria from '../components/index/4-Galeria.astro';
-import Footer from '../components/header-footer/5-Footer.astro';
-import "../styles/global.css";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const whatsapp = 'https://wa.me/573165246636';
+const experiences = [
+  {label: 'Novias', title: 'Maquillaje Novias', line: 'Belleza eterna para tu día perfecto', text: 'Look radiante y duradero que resaltará en tus fotos y durante toda la celebración.', img: '/Novias.webp', link: '/MNovias'},
+  {label: 'Social', title: 'Maquillaje Social', line: 'Realza tu belleza natural con expertas', text: 'Transformación profesional para eventos especiales, destacando tus mejores facciones.', img: '/MaquillajeSocial.webp', link: '/MSocial'},
+  {label: 'Quinceañeras', title: 'Maquillaje y Peinado Quinceañeras', line: 'Brillo y magia para tu gran día', text: 'Diseño exclusivo para resaltar tu personalidad en esta celebración única.', img: '/Quinceañeras.webp', link: '/MQuince'},
+  {label: 'Peinados', title: 'Peinados', line: 'Estilo que complementa tu esencia', text: 'Desde recogidos elegantes hasta sueltos románticos, creamos el look ideal para ti.', img: '/Peinados.webp', link: '/HPeinados'},
+];
+const feature = [
+  { image:'/CarruselHeader2SF.webp', title:'Eventos Especiales', text:'Transformamos tu imagen con maquillaje y peinado profesional.' },
+  { image:'/CarruselHeader3SF.webp', title:'Vamos a Domicilio', text:'Maquillaje y peinado profesional en la comodidad de tu hogar.' },
+];
 ---
+<Layout home>
+  <section id="inicio" class="alma-hero alma-wrap">
+    <div class="alma-hero__copy">
+      <p class="alma-kicker">Beauty, with soul.</p>
+      <h1>Tu esencia.<br><span>Otra <em>dimensión.</em></span></h1>
+      <p class="alma-hero__intro">Maquillaje y peinado premium a domicilio en Bogotá.</p>
+      <div class="alma-link-row">
+        <a class="alma-button" href="#experiencias">Encuentra tu experiencia</a>
+        <a class="alma-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">Reserva ahora</a>
+      </div>
+    </div>
+    <div class="alma-hero__visual">
+      <div class="alma-portrait"><img src="/CarruselHeader1.webp" alt="Equipo de ALMA con herramientas de maquillaje y peinado" fetchpriority="high" /></div>
+      <span class="alma-orbit" aria-hidden="true">Studio / Academy</span>
+      <span class="alma-star" aria-hidden="true">✦</span>
+    </div>
+    <div class="alma-hero__bottom"><span>Maquillaje · Peinados · Formación</span><a href="#experiencias">Desliza para explorar</a></div>
+  </section>
 
-<Layout>
-	<header>
-		<Header />
-	</header>
-	<main>
-		<section>
-			<Banner />
-		</section>
-		<section>
-			<Servicios />
-		</section>
-		<section>
-			<Galeria />
-		</section>
-	</main>
-	<footer>
-		<Footer />
-	</footer>	
+  <section id="experiencias" class="alma-experiences alma-wrap" aria-labelledby="experiencias-title">
+    <div class="alma-stage-heading">
+      <div><p class="alma-kicker">El universo ALMA</p><p>Donde la belleza se encuentra con la perfección: maquillajes y peinados de alta calidad que destacan tu esencia en cada evento importante de tu vida.</p></div>
+      <h2 id="experiencias-title">Hay una versión de ti<br>que está lista para <em>brillar.</em></h2>
+    </div>
+    <div data-alma-experiences class="alma-scene-wrap">
+      <div class="alma-experience-controls" aria-label="Elegir experiencia" hidden>
+        {experiences.map(({label},i) => <button type="button" data-experience={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls={`experiencia-${i}`}>{label}</button>)}
+      </div>
+      {experiences.map(({title,line,text,img,link},i) => (
+        <article id={`experiencia-${i}`} class="alma-scene" data-experience-panel={i}>
+          <div class="alma-scene__photo"><img src={img} alt={title} loading="lazy" decoding="async" /></div>
+          <div class="alma-glass alma-scene__copy">
+            <p class="alma-kicker">{line}</p>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <div class="alma-link-row">
+              <a class="alma-button" href={link}>Más información</a>
+              <a class="alma-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">Reserva ahora</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="alma-feature-grid" aria-label="Servicios a domicilio y para eventos">
+      {feature.map(({image,title,text}) => (
+        <article class="alma-glass alma-feature">
+          <img src={image} alt="" loading="lazy" decoding="async" />
+          <div><h3>{title}</h3><p>{text}</p></div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="academia" class="alma-academy alma-wrap">
+    <div class="alma-academy__image"><img src="/Escuela.webp" alt="Formación profesional en la Escuela de Alma" loading="lazy" decoding="async" /><span>El arte también se aprende.</span></div>
+    <div class="alma-glass alma-academy__copy">
+      <p class="alma-kicker">La Escuela de Alma</p>
+      <h2>Tu talento.<br><em>El siguiente nivel.</em></h2>
+      <p>Formamos artistas con técnica, pasión y propósito.</p>
+      <p>Conviértete en experto con nuestro programa completo de maquillaje y estilismo.</p>
+      <div class="alma-link-row">
+        <a class="alma-button" href="/HEscuela">Conoce la academia</a>
+        <a class="alma-text-link" href={whatsapp} target="_blank" rel="noopener noreferrer">Reserva ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="galeria" class="alma-wrap alma-gallery"><Galeria /></div>
+
+  <section id="contacto" class="alma-contact alma-wrap">
+    <p class="alma-kicker">Tu próxima historia empieza aquí.</p>
+    <h2>Hagamos algo<br><em>muy tuyo.</em></h2>
+    <div class="alma-link-row">
+      <a class="alma-button" href={whatsapp} target="_blank" rel="noopener noreferrer">Conversa con ALMA</a>
+      <a class="alma-text-link" href="/HContacto">Contacto</a>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  document.querySelectorAll('[data-alma-experiences]').forEach(component => {
+    const controls = component.querySelector<HTMLElement>('.alma-experience-controls');
+    const buttons = Array.from(component.querySelectorAll<HTMLButtonElement>('[data-experience]'));
+    const panels = Array.from(component.querySelectorAll<HTMLElement>('[data-experience-panel]'));
+    if (!controls || !buttons.length || buttons.length !== panels.length) return;
+    const select = (idx: number) => {
+      buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === idx)));
+      panels.forEach((panel, i) => panel.hidden = i !== idx);
+    };
+    controls.hidden = false;
+    buttons.forEach((button, i) => button.addEventListener('click', () => select(i)));
+    select(0);
+  });
+</script>
